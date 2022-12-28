@@ -21,15 +21,17 @@ public class Client {
         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()), 4 * 1024);
         PrintWriter pw = new PrintWriter(connection.getOutputStream());
 
-        String masv = "";
+        String masv = "B19DCCN170;123";
         pw.write(masv, 0, masv.length());
         pw.flush();
 
         StringBuilder str = new StringBuilder();
         int ch;
         while ((ch = br.read()) != -1) {
-            System.out.println((char) ch);
             str.append((char) ch);
+            if (!br.ready()) {
+                break;
+            }
         }
         System.out.println(str.toString());
 

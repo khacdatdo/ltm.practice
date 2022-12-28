@@ -25,22 +25,27 @@ public class Server {
             BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()), 4 * 1024);
             PrintWriter pw = new PrintWriter(client.getOutputStream());
 
+            while (!br.ready()) {
+            }
+
             StringBuilder masv = new StringBuilder();
             int ch;
-            while ((ch = br.read()) != -1) {
-                System.out.println((char) ch);
+            while (br.ready() && (ch = br.read()) != -1) {
                 masv.append((char) ch);
             }
             System.out.println("masv: " + masv.toString());
 
             String chuoi = "Hello World";
             pw.write(chuoi);
-            System.out.println(chuoi);
             pw.flush();
 
+            // doi den khi co ket qua
+            while (!br.ready()) {
+                // do nothing
+            }
+
             StringBuilder ketqua = new StringBuilder();
-            while ((ch = br.read()) != -1) {
-                System.out.println((char) ch);
+            while (br.ready() && (ch = br.read()) != -1) {
                 ketqua.append((char) ch);
             }
             System.out.println("ketqua: " + ketqua.toString());
