@@ -1,4 +1,4 @@
-package Bai802;
+package UDP.Bai802;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
